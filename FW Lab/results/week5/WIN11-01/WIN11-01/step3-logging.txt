@@ -1,0 +1,107 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20261118213749
+Username: EHUB\Administrator
+RunAs User: EHUB\Administrator
+Configuration Name: 
+Machine: WIN11-01 (Microsoft Windows NT 10.0.26300.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+Process ID: 4928
+PSVersion: 5.1.26100.9711
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
+BuildVersion: 10.0.26100.9711
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\FWLab\results\week5\step3-logging.txt
+PS C:\FWLab\scripts> $b = .\00-Backup-FirewallState.ps1
+Backup written to C:\FWLab\backups\20261118-213749
+PS C:\FWLab\scripts> .\03-Set-FirewallLogging.ps1
+[PersistentStore] Private logging configured
+[PersistentStore] Domain logging configured
+[PersistentStore] Public logging configured
+PS C:\FWLab\scripts> .\09-Test-FirewallBaseline.ps1 -SkipMergeSettings
+
+Id  Setting                                     Expected                                              Actual
+--  -------                                     --------                                              ------
+S01 Domain.DefaultInboundAction                 Block                                                 Block
+S02 Domain.DefaultOutboundAction                Allow                                                 Allow
+S03 Domain.Enabled                              True                                                  True
+S04 Domain.LogAllowed                           True                                                  True
+S05 Domain.LogBlocked                           True                                                  True
+S06 Domain.LogFileName                          %SystemRoot%\System32\logfiles\firewall\domainfw.log  %SystemRoot%\S...
+S07 Domain.LogMaxSizeKilobytes                  16384                                                 16384
+S08 Domain.NotifyOnListen                       False                                                 True
+S09 Private.DefaultInboundAction                Block                                                 Block
+S10 Private.DefaultOutboundAction               Allow                                                 Allow
+S11 Private.Enabled                             True                                                  True
+S12 Private.LogAllowed                          True                                                  True
+S13 Private.LogBlocked                          True                                                  True
+S14 Private.LogFileName                         %SystemRoot%\System32\logfiles\firewall\privatefw.log %SystemRoot%\S...
+S15 Private.LogMaxSizeKilobytes                 16384                                                 16384
+S16 Private.NotifyOnListen                      False                                                 True
+S17 Public.DefaultInboundAction                 Block                                                 Block
+S18 Public.DefaultOutboundAction                Allow                                                 Allow
+S19 Public.Enabled                              True                                                  True
+S20 Public.LogAllowed                           True                                                  True
+S21 Public.LogBlocked                           True                                                  True
+S22 Public.LogFileName                          %SystemRoot%\System32\logfiles\firewall\publicfw.log  %SystemRoot%\S...
+S23 Public.LogMaxSizeKilobytes                  16384                                                 16384
+S24 Public.NotifyOnListen                       False                                                 True
+S25 Rule: LAB - RDP allow from admin subnet     True/Allow/Inbound                                    MISSING
+S26 Rule: LAB - RDP block from non-admin ranges True/Block/Inbound                                    MISSING
+S27 Rule: LAB - block outbound TCP 4444         True/Block/Outbound                                   MISSING
+S28 Audit: MPSSVC Rule-Level Policy Change      Success and Failure                                   Success and Fa...
+S29 Audit: Filtering Platform Packet Drop       Failure                                               Failure
+S30 Audit: Filtering Platform Connection        Failure                                               Failure
+S31 Service mpssvc running                      Running                                               Running
+
+
+25/31 settings pass (81%)
+PS C:\FWLab\scripts> Get-Content $env:SystemRoot\System32\LogFiles\Firewall\domainfw.log -Tail 15
+#Version: 1.5
+#Software: Microsoft Windows Firewall
+#Time Format: Local
+#Fields: date time action protocol src-ip dst-ip src-port dst-port size tcpflags tcpsyn tcpack tcpwin icmptype icmpcode info path pid
+
+2026-11-18 21:37:56 ALLOW UDP 10.10.10.21 10.10.10.10 60484 53 0 - - - - - - - SEND 1768
+PS C:\FWLab\scripts> Get-Content $env:SystemRoot\System32\LogFiles\Firewall\domainfw.log -Tail 20
+#Version: 1.5
+#Software: Microsoft Windows Firewall
+#Time Format: Local
+#Fields: date time action protocol src-ip dst-ip src-port dst-port size tcpflags tcpsyn tcpack tcpwin icmptype icmpcode info path pid
+
+2026-11-18 21:37:56 ALLOW UDP 10.10.10.21 10.10.10.10 60484 53 0 - - - - - - - SEND 1768
+2026-11-18 21:40:17 ALLOW UDP 10.10.10.21 10.10.10.10 62325 53 0 - - - - - - - SEND 1768
+2026-11-18 21:41:18 ALLOW UDP 10.10.10.21 10.10.10.10 53451 53 0 - - - - - - - SEND 1768
+2026-11-18 21:41:27 ALLOW UDP 10.10.10.21 10.10.10.10 52970 53 0 - - - - - - - SEND 1768
+2026-11-18 21:41:41 ALLOW UDP 10.10.10.21 10.10.10.10 60894 53 0 - - - - - - - SEND 1768
+2026-11-18 21:41:51 ALLOW UDP 10.10.10.21 10.10.10.10 54741 53 0 - - - - - - - SEND 1768
+2026-11-18 21:41:52 ALLOW TCP 10.10.10.21 10.10.10.10 49739 135 0 - 0 0 0 - - - SEND 6200
+2026-11-18 21:41:52 ALLOW TCP 10.10.10.21 10.10.10.10 49740 49669 0 - 0 0 0 - - - SEND 6200
+2026-11-18 21:41:52 ALLOW TCP 10.10.10.21 10.10.10.10 49741 389 0 - 0 0 0 - - - SEND 6200
+2026-11-18 21:41:52 ALLOW TCP 10.10.10.21 10.10.10.10 49742 389 0 - 0 0 0 - - - SEND 6200
+2026-11-18 21:41:52 ALLOW UDP 10.10.10.21 10.10.10.10 53128 53 0 - - - - - - - SEND 1768
+2026-11-18 21:41:53 DROP TCP 10.10.10.50 10.10.10.21 46356 445 44 S 423699896 0 1024 - - - RECEIVE 4
+2026-11-18 21:41:54 DROP TCP 10.10.10.50 10.10.10.21 46358 445 44 S 423830970 0 1024 - - - RECEIVE 4
+2026-11-18 21:42:01 ALLOW UDP 10.10.10.21 10.10.10.10 62407 53 0 - - - - - - - SEND 1768
+PS C:\FWLab\scripts> Get-NetFirewallRule -Enabled True -Direction Inbound -Action Allow |
+  Where-Object { ($_ | Get-NetFirewallPortFilter).LocalPort -match '^(135|RPCEPMap)$' } |
+  Select DisplayName, DisplayGroup, Profile
+
+DisplayName                 DisplayGroup      Profile
+-----------                 ------------      -------
+Remote Assistance (DCOM-In) Remote Assistance  Domain
+
+
+PS C:\FWLab\scripts> $b = (Get-ChildItem C:\FWLab\backups | Sort-Object Name | Select -Last 1).FullName
+PS C:\FWLab\scripts> .\01-Restore-FirewallState.ps1 -BackupDir $b
+Rollback verified: effective profiles match the backup.
+PS C:\FWLab\scripts> Stop-Transcript     # harmless error if no transcript is running
+**********************
+Windows PowerShell transcript end
+End time: 20261118215107
+**********************

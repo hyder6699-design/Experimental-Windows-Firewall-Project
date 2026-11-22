@@ -1,0 +1,53 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20261118215438
+Username: EHUB\Administrator
+RunAs User: EHUB\Administrator
+Configuration Name: 
+Machine: WIN11-01 (Microsoft Windows NT 10.0.26300.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+Process ID: 4928
+PSVersion: 5.1.26100.9711
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
+BuildVersion: 10.0.26100.9711
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\FWLab\results\week5\step5-outbound.txt
+PS C:\FWLab\scripts> Test-NetConnection 10.10.10.50 -Port 4444 | Select TcpTestSucceeded      # BEFORE
+
+TcpTestSucceeded
+----------------
+            True
+
+
+PS C:\FWLab\scripts> $b = .\00-Backup-FirewallState.ps1
+Backup written to C:\FWLab\backups\20261118-215512
+PS C:\FWLab\scripts> .\05-Set-OutboundTestRule.ps1
+[PersistentStore] rule LAB-Block-Out-4444 created
+PS C:\FWLab\scripts> Test-NetConnection 10.10.10.50 -Port 4444 | Select TcpTestSucceeded      # AFTER
+WARNING: TCP connect to (10.10.10.50 : 4444) failed
+
+TcpTestSucceeded
+----------------
+           False
+
+
+PS C:\FWLab\scripts> Get-WinEvent -FilterHashtable @{LogName='Security'; Id=5157; StartTime=(Get-Date).AddMinutes(-2)} -MaxEvents 3 |
+  Select TimeCreated, @{n='Detail';e={($_.Message -split "`n" | Select-String 'Direction|Destination Address|Destination Port').Line -join ' | '}}
+
+TimeCreated           Detail
+-----------           ------
+11/18/2026 9:55:16 PM 	Direction:		Outbound...
+
+
+PS C:\FWLab\scripts> .\01-Restore-FirewallState.ps1 -BackupDir $b
+Rollback verified: effective profiles match the backup.
+PS C:\FWLab\scripts> Stop-Transcript
+**********************
+Windows PowerShell transcript end
+End time: 20261118215550
+**********************
