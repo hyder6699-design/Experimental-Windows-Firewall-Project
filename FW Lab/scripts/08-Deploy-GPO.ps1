@@ -3,11 +3,11 @@
 <#
 .SYNOPSIS  Method C: build the FW-Baseline GPO on the DC and link it to the clients OU.
            Reuses scripts 02-05 with -PolicyStore pointing at the GPO.
-.EXAMPLE   .\08-Deploy-GPO.ps1 -TargetOU 'OU=LabClients,DC=lab,DC=local'
+.EXAMPLE   .\08-Deploy-GPO.ps1 -TargetOU 'OU=LabClients,DC=ehub,DC=com'
 #>
 param(
     [string]$GpoName  = 'FW-Baseline',
-    [string]$TargetOU = 'OU=LabClients,DC=lab,DC=local'
+    [string]$TargetOU = 'OU=LabClients,DC=ehub,DC=com'
 )
 $ErrorActionPreference = 'Stop'
 $here   = $PSScriptRoot

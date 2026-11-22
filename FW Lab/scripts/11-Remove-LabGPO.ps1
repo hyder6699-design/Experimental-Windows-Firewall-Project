@@ -5,7 +5,7 @@
 #>
 param(
     [string]$GpoName  = 'FW-Baseline',
-    [string]$TargetOU = 'OU=LabClients,DC=lab,DC=local',
+    [string]$TargetOU = 'OU=LabClients,DC=ehub,DC=com',
     [string[]]$Computers = @('WIN11-01','SRV-01'),
     [switch]$Delete
 )

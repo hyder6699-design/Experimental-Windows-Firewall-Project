@@ -3,7 +3,7 @@
 .SYNOPSIS  Profile state, default actions, notifications and rule-merge settings.
 .PARAMETER PolicyStore
     PersistentStore (default) = local store, used by the PowerShell method.
-    'lab.local\FW-Baseline'   = a domain GPO, used by 08-Deploy-GPO.ps1.
+    'ehub.com\FW-Baseline'   = a domain GPO, used by 08-Deploy-GPO.ps1.
     localhost                 = the local GPO (optional variant).
 #>
 param(
@@ -31,6 +31,6 @@ foreach ($name in $b.Profiles.Keys) {
             $params.AllowLocalIPsecRules    = $p.AllowLocalIPsecRules
         }
     }
-    Set-NetFirewallProfile @args
+    Set-NetFirewallProfile @params
     Write-Host "[$PolicyStore] $name profile configured"
 }
