@@ -1,0 +1,71 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20261118213712
+Username: EHUB\Administrator
+RunAs User: EHUB\Administrator
+Configuration Name: 
+Machine: WIN11-01 (Microsoft Windows NT 10.0.26300.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+Process ID: 4928
+PSVersion: 5.1.26100.9711
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
+BuildVersion: 10.0.26100.9711
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\FWLab\results\week5\step2-profiles.txt
+PS C:\FWLab\scripts> $b = .\00-Backup-FirewallState.ps1
+Backup written to C:\FWLab\backups\20261118-213712
+PS C:\FWLab\scripts> .\02-Set-FirewallProfiles.ps1
+[PersistentStore] Private profile configured
+[PersistentStore] Domain profile configured
+WARNING: Public merge settings only take effect in a GPO store - skipped for local store.
+[PersistentStore] Public profile configured
+PS C:\FWLab\scripts> .\09-Test-FirewallBaseline.ps1 -SkipMergeSettings
+
+Id  Setting                                     Expected                                              Actual
+--  -------                                     --------                                              ------
+S01 Domain.DefaultInboundAction                 Block                                                 Block
+S02 Domain.DefaultOutboundAction                Allow                                                 Allow
+S03 Domain.Enabled                              True                                                  True
+S04 Domain.LogAllowed                           True                                                  False
+S05 Domain.LogBlocked                           True                                                  False
+S06 Domain.LogFileName                          %SystemRoot%\System32\logfiles\firewall\domainfw.log  %systemroot%\s...
+S07 Domain.LogMaxSizeKilobytes                  16384                                                 4096
+S08 Domain.NotifyOnListen                       False                                                 False
+S09 Private.DefaultInboundAction                Block                                                 Block
+S10 Private.DefaultOutboundAction               Allow                                                 Allow
+S11 Private.Enabled                             True                                                  True
+S12 Private.LogAllowed                          True                                                  False
+S13 Private.LogBlocked                          True                                                  False
+S14 Private.LogFileName                         %SystemRoot%\System32\logfiles\firewall\privatefw.log %systemroot%\s...
+S15 Private.LogMaxSizeKilobytes                 16384                                                 4096
+S16 Private.NotifyOnListen                      False                                                 False
+S17 Public.DefaultInboundAction                 Block                                                 Block
+S18 Public.DefaultOutboundAction                Allow                                                 Allow
+S19 Public.Enabled                              True                                                  True
+S20 Public.LogAllowed                           True                                                  False
+S21 Public.LogBlocked                           True                                                  False
+S22 Public.LogFileName                          %SystemRoot%\System32\logfiles\firewall\publicfw.log  %systemroot%\s...
+S23 Public.LogMaxSizeKilobytes                  16384                                                 4096
+S24 Public.NotifyOnListen                       False                                                 False
+S25 Rule: LAB - RDP allow from admin subnet     True/Allow/Inbound                                    MISSING
+S26 Rule: LAB - RDP block from non-admin ranges True/Block/Inbound                                    MISSING
+S27 Rule: LAB - block outbound TCP 4444         True/Block/Outbound                                   MISSING
+S28 Audit: MPSSVC Rule-Level Policy Change      Success and Failure                                   Success and Fa...
+S29 Audit: Filtering Platform Packet Drop       Failure                                               Failure
+S30 Audit: Filtering Platform Connection        Failure                                               Failure
+S31 Service mpssvc running                      Running                                               Running
+
+
+16/31 settings pass (52%)
+PS C:\FWLab\scripts> .\01-Restore-FirewallState.ps1 -BackupDir $b
+Rollback verified: effective profiles match the backup.
+PS C:\FWLab\scripts> Stop-Transcript
+**********************
+Windows PowerShell transcript end
+End time: 20261118213724
+**********************
