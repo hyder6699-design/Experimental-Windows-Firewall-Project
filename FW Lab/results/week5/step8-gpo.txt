@@ -1,0 +1,62 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20261122225906
+Username: EHUB\Administrator
+RunAs User: EHUB\Administrator
+Configuration Name: 
+Machine: DC-01 (Microsoft Windows NT 10.0.20348.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+Process ID: 3272
+PSVersion: 5.1.20348.558
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.20348.558
+BuildVersion: 10.0.20348.558
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\FWLab\results\week5\step8-gpo.txt
+[ehub.com\FW-Baseline] Private profile configured
+[ehub.com\FW-Baseline] Domain profile configured
+[ehub.com\FW-Baseline] Public profile configured
+[ehub.com\FW-Baseline] Private logging configured
+[ehub.com\FW-Baseline] Domain logging configured
+[ehub.com\FW-Baseline] Public logging configured
+[ehub.com\FW-Baseline] rule LAB-RDP-Allow-Admin created
+[ehub.com\FW-Baseline] rule LAB-RDP-Block-NonAdmin created
+[ehub.com\FW-Baseline] rule LAB-Block-Out-4444 created
+GPO 'FW-Baseline' configured and linked to OU=LabClients,DC=ehub,DC=com.
+Clients pick it up at next refresh (~90 min +/- 30) or: Invoke-GPUpdate -Computer <name> -Force
+PS C:\FWLab\scripts> Invoke-Command WIN11-01, SRV-01 { gpupdate /target:computer /force | Out-Null }
+Invoke-Command WIN11-01, SRV-01 {
+  Set-ExecutionPolicy -Scope Process Bypass -Force
+  & C:\FWLab\scripts\09-Test-FirewallBaseline.ps1 | Select-Object -Last 0
+}
+[WIN11-01] Connecting to remote server WIN11-01 failed with the following error message : WinRM cannot complete the 
+operation. Verify that the specified computer name is valid, that the computer is accessible over the network, and that 
+a firewall exception for the WinRM service is enabled and allows access from this computer. By default, the WinRM 
+firewall exception for public profiles limits access to remote computers within the same local subnet. For more 
+information, see the about_Remote_Troubleshooting Help topic.
+    + CategoryInfo          : OpenError: (WIN11-01:String) [], PSRemotingTransportException
+    + FullyQualifiedErrorId : WinRMOperationTimeout,PSSessionStateBroken
+[WIN11-01] Connecting to remote server WIN11-01 failed with the following error message : WinRM cannot complete the operation. Verify that the specified computer name is
+valid, that the computer is accessible over the network, and that a firewall exception for the WinRM service is enabled and allows access from this computer. By default, the
+WinRM firewall exception for public profiles limits access to remote computers within the same local subnet. For more information, see the about_Remote_Troubleshooting Help
+topic.
+    + CategoryInfo          : OpenError: (WIN11-01:String) [], PSRemotingTransportException
+    + FullyQualifiedErrorId : WinRMOperationTimeout,PSSessionStateBroken
+[WIN11-01] Connecting to remote server WIN11-01 failed with the following error message : WinRM cannot complete the 
+operation. Verify that the specified computer name is valid, that the computer is accessible over the network, and that 
+a firewall exception for the WinRM service is enabled and allows access from this computer. By default, the WinRM 
+firewall exception for public profiles limits access to remote computers within the same local subnet. For more 
+information, see the about_Remote_Troubleshooting Help topic.
+    + CategoryInfo          : OpenError: (WIN11-01:String) [], PSRemotingTransportException
+    + FullyQualifiedErrorId : WinRMOperationTimeout,PSSessionStateBroken
+[WIN11-01] Connecting to remote server WIN11-01 failed with the following error message : WinRM cannot complete the operation. Verify that the specified computer name is
+valid, that the computer is accessible over the network, and that a firewall exception for the WinRM service is enabled and allows access from this computer. By default, the
+WinRM firewall exception for public profiles limits access to remote computers within the same local subnet. For more information, see the about_Remote_Troubleshooting Help
+topic.
+    + CategoryInfo          : OpenError: (WIN11-01:String) [], PSRemotingTransportException
+    + FullyQualifiedErrorId : WinRMOperationTimeout,PSSessionStateBroken
+INFO: 33/33 settings pass (100%)
