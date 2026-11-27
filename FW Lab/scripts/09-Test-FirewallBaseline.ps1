@@ -8,7 +8,8 @@ param(
     [string]$BaselinePath = (Join-Path $PSScriptRoot '..\config\Baseline.psd1'),
     [string]$OutCsv,
     [switch]$SkipMergeSettings,  # use for local-store methods (merge only exists in GPO)
-    [switch]$PassThru            # also emit the result objects (used by Pester)
+    [switch]$PassThru,           # also emit the result objects (used by Pester)
+    [switch]$Quiet               # no table or summary; exit code only (used by the Week 6 harness)
 )
 $b = Import-PowerShellDataFile $BaselinePath
 $results = [System.Collections.Generic.List[object]]::new()
@@ -54,9 +55,11 @@ foreach ($a in $b.Audit) {
 $i++
 Add-Result ('S{0:D2}' -f $i) 'Service mpssvc running' 'Running' (Get-Service mpssvc).Status 'SCM'
 
-$results | Format-Table -AutoSize | Out-Host
 $pass = ($results | Where-Object Pass).Count
-Write-Host ("{0}/{1} settings pass ({2:P0})" -f $pass, $results.Count, ($pass / $results.Count))
+if (-not $Quiet) {
+    $results | Format-Table -AutoSize | Out-Host
+    Write-Host ("{0}/{1} settings pass ({2:P0})" -f $pass, $results.Count, ($pass / $results.Count))
+}
 if ($OutCsv) {
     $results | Select-Object @{n='Computer';e={$env:COMPUTERNAME}}, @{n='Time';e={Get-Date -Format o}}, * |
         Export-Csv $OutCsv -NoTypeInformation -Append
