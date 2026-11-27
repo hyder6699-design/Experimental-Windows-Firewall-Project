@@ -1,4 +1,0 @@
-Method,Runs,Converged,Settings,ScriptMean,ScriptSD,EffMean,EffSD,EffMin,EffMax,EffMedian,LagMean,CV
-Netsh,5,5,31/31,10.0,0.21,23.5,0.79,22.9,24.9,23.3,13.5,3.4
-PowerShell,5,5,31/31,27.7,1.05,40.4,1.46,38.8,42.6,40.1,12.7,3.6
-GPO,5,5,33/33,31.0,3.21,45.8,3.79,42.6,52.1,44.7,14.8,8.3
