@@ -1,0 +1,11 @@
+# Nmap 7.991 scan initiated Fri Nov 27 22:30:35 2026 as: /usr/lib/nmap/nmap -Pn -sS --reason -p 3389,8080 -oA ../results/scans/20261127-223035-C4-before 10.10.10.21
+Unable to determine any DNS servers. . Falling back to --system-dns. Specify valid servers with --dns-servers
+Nmap scan report for 10.10.10.21
+Host is up, received arp-response (0.0057s latency).
+
+PORT     STATE SERVICE       REASON
+3389/tcp open  ms-wbt-server syn-ack ttl 128
+8080/tcp open  http-proxy    syn-ack ttl 128
+MAC Address: 00:0C:29:5E:BF:21 (VMware)
+
+# Nmap done at Fri Nov 27 22:30:36 2026 -- 1 IP address (1 host up) scanned in 0.37 seconds

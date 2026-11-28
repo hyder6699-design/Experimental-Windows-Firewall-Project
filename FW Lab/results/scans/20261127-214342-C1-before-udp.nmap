@@ -1,0 +1,13 @@
+# Nmap 7.991 scan initiated Fri Nov 27 21:43:43 2026 as: /usr/lib/nmap/nmap -Pn -sU --reason -p 137,138,161,500 -oA ../results/scans/20261127-214342-C1-before-udp 10.10.10.21
+Unable to determine any DNS servers. . Falling back to --system-dns. Specify valid servers with --dns-servers
+Nmap scan report for 10.10.10.21
+Host is up, received arp-response (0.0014s latency).
+
+PORT    STATE         SERVICE     REASON
+137/udp open          netbios-ns  udp-response ttl 128
+138/udp open|filtered netbios-dgm no-response
+161/udp closed        snmp        port-unreach ttl 128
+500/udp open|filtered isakmp      no-response
+MAC Address: 00:0C:29:5E:BF:21 (VMware)
+
+# Nmap done at Fri Nov 27 21:43:44 2026 -- 1 IP address (1 host up) scanned in 1.64 seconds

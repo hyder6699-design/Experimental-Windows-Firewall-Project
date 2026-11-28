@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.991 scan initiated Fri Nov 27 21:50:53 2026 as: /usr/lib/nmap/nmap -Pn -sS -&#45;reason -p 22,80,135,139,443,445,3389,5985,5986 -oA ../results/scans/20261127-215052-C1-gpo-removed-tcp 10.10.10.21 -->
+<nmaprun scanner="nmap" args="/usr/lib/nmap/nmap -Pn -sS -&#45;reason -p 22,80,135,139,443,445,3389,5985,5986 -oA ../results/scans/20261127-215052-C1-gpo-removed-tcp 10.10.10.21" start="1795834253" startstr="Fri Nov 27 21:50:53 2026" version="7.991" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="9" services="22,80,135,139,443,445,3389,5985-5986"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="10.10.10.21" addrtype="ipv4"/>
+<address addr="00:0C:29:5E:BF:21" addrtype="mac" vendor="VMware"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1795834253" endtime="1795834253"><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="10.10.10.21" addrtype="ipv4"/>
+<address addr="00:0C:29:5E:BF:21" addrtype="mac" vendor="VMware"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="closed" reason="reset" reason_ttl="128"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="closed" reason="reset" reason_ttl="128"/><service name="http" method="table" conf="3"/></port>
+<port protocol="tcp" portid="135"><state state="open" reason="syn-ack" reason_ttl="128"/><service name="msrpc" method="table" conf="3"/></port>
+<port protocol="tcp" portid="139"><state state="open" reason="syn-ack" reason_ttl="128"/><service name="netbios-ssn" method="table" conf="3"/></port>
+<port protocol="tcp" portid="443"><state state="closed" reason="reset" reason_ttl="128"/><service name="https" method="table" conf="3"/></port>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="128"/><service name="microsoft-ds" method="table" conf="3"/></port>
+<port protocol="tcp" portid="3389"><state state="open" reason="syn-ack" reason_ttl="128"/><service name="ms-wbt-server" method="table" conf="3"/></port>
+<port protocol="tcp" portid="5985"><state state="open" reason="syn-ack" reason_ttl="128"/><service name="wsman" method="table" conf="3"/></port>
+<port protocol="tcp" portid="5986"><state state="closed" reason="reset" reason_ttl="128"/><service name="wsmans" method="table" conf="3"/></port>
+</ports>
+<times srtt="2425" rttvar="1926" to="100000"/>
+</host>
+<runstats><finished time="1795834253" timestr="Fri Nov 27 21:50:53 2026" summary="Nmap done at Fri Nov 27 21:50:53 2026; 1 IP address (1 host up) scanned in 0.22 seconds" elapsed="0.22" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

@@ -1,0 +1,10 @@
+# Nmap 7.991 scan initiated Sat Nov 28 09:20:47 2026 as: /usr/lib/nmap/nmap -Pn -sS --reason -p 3389 -oA ../results/scans/20261128-092047-C6-with-block 10.10.10.21
+Unable to determine any DNS servers. . Falling back to --system-dns. Specify valid servers with --dns-servers
+Nmap scan report for 10.10.10.21
+Host is up, received arp-response (0.00078s latency).
+
+PORT     STATE    SERVICE       REASON
+3389/tcp filtered ms-wbt-server no-response
+MAC Address: 00:0C:29:5E:BF:21 (VMware)
+
+# Nmap done at Sat Nov 28 09:20:48 2026 -- 1 IP address (1 host up) scanned in 0.37 seconds

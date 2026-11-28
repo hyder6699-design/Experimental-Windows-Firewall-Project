@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.991 scan initiated Fri Nov 27 22:01:09 2026 as: /usr/lib/nmap/nmap -Pn -sU -&#45;reason -p 137,138,161,500 -oA ../results/scans/20261127-220107-C2-gpo-removed-udp 10.10.10.21 -->
+<nmaprun scanner="nmap" args="/usr/lib/nmap/nmap -Pn -sU -&#45;reason -p 137,138,161,500 -oA ../results/scans/20261127-220107-C2-gpo-removed-udp 10.10.10.21" start="1795834869" startstr="Fri Nov 27 22:01:09 2026" version="7.991" xmloutputversion="1.05">
+<scaninfo type="udp" protocol="udp" numservices="4" services="137-138,161,500"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="10.10.10.21" addrtype="ipv4"/>
+<address addr="00:0C:29:5E:BF:21" addrtype="mac" vendor="VMware"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1795834869" endtime="1795834871"><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="10.10.10.21" addrtype="ipv4"/>
+<address addr="00:0C:29:5E:BF:21" addrtype="mac" vendor="VMware"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="udp" portid="137"><state state="open" reason="udp-response" reason_ttl="128"/><service name="netbios-ns" method="table" conf="3"/></port>
+<port protocol="udp" portid="138"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="netbios-dgm" method="table" conf="3"/></port>
+<port protocol="udp" portid="161"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="snmp" method="table" conf="3"/></port>
+<port protocol="udp" portid="500"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="isakmp" method="table" conf="3"/></port>
+</ports>
+<times srtt="512" rttvar="3818" to="100000"/>
+</host>
+<runstats><finished time="1795834871" timestr="Fri Nov 27 22:01:11 2026" summary="Nmap done at Fri Nov 27 22:01:11 2026; 1 IP address (1 host up) scanned in 1.61 seconds" elapsed="1.61" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

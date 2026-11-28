@@ -1,0 +1,13 @@
+# Nmap 7.991 scan initiated Sat Nov 28 09:14:38 2026 as: /usr/lib/nmap/nmap -Pn -sS --reason -p 135,3389,5985,8080 -oA ../results/scans/20261128-091438-C5-after-gpo 10.10.10.21
+Unable to determine any DNS servers. . Falling back to --system-dns. Specify valid servers with --dns-servers
+Nmap scan report for 10.10.10.21
+Host is up, received arp-response (0.00055s latency).
+
+PORT     STATE    SERVICE       REASON
+135/tcp  filtered msrpc         no-response
+3389/tcp filtered ms-wbt-server no-response
+5985/tcp filtered wsman         no-response
+8080/tcp filtered http-proxy    no-response
+MAC Address: 00:0C:29:5E:BF:21 (VMware)
+
+# Nmap done at Sat Nov 28 09:14:40 2026 -- 1 IP address (1 host up) scanned in 1.43 seconds
